@@ -14,5 +14,6 @@ Usage
 =====
 
 Start the server with 
-	'go run server.go <AWS-RDS-endpoint>'.
+
+    'go run server.go <AWS-RDS-endpoint>'.
 
