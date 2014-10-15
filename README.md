@@ -6,7 +6,8 @@ Backend for Mobile Hardware project (Mobile Air Quality Measurement). Acts as a 
 Installation
 ============
 
-Go must be installed. https://golang.org/doc/install
+Go must be installed. https://golang.org/doc/install  
+
 go-sql-driver needs to be installed as well. https://github.com/go-sql-driver/mysql#installation
 
 Usage
