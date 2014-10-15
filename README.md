@@ -13,5 +13,6 @@ go-sql-driver needs to be installed as well. https://github.com/go-sql-driver/my
 Usage
 =====
 
-Start the server with 'go run server.go <AWS RDS endpoint>'.
+Start the server with 
+	'go run server.go <AWS-RDS-endpoint>'.
 
