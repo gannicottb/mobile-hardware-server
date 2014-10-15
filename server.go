@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 	//"github.com/pmylund/go-cache"
@@ -113,19 +114,17 @@ var caching bool
 // 	if debug {fmt.Println("Q3 RESPONSE:" + buffer.String())}
 // }
 
-func add(w http.ResponseWriter, r *http.Request){
+func upload(w http.ResponseWriter, r *http.Request){
 	text := r.URL.Query()["text"][0]
 	fmt.Println("add request for text="+text)
 	res, err:= db.Exec("INSERT INTO test VALUES('"+text+"')")
-	if err!=nil{
+	if err != nil{
 		log.Print(err)
 	} else {
-		rows, error := res.RowsAffected()
-		if error != nil{
-			log.Print(error)
-		} else {
-			fmt.Println(text+" entered into DB! "+strconv.FormatInt(rows, 10)+ " rows affected.")			
-		}
+		rows, _ := res.RowsAffected()
+		result := text + " entered into DB! " + strconv.FormatInt(rows, 10) + " rows affected."		
+		io.WriteString(w, result)
+		fmt.Println(result)		
 	}
 }
 
@@ -159,9 +158,10 @@ func main() {
 	//http.HandleFunc("/q1", q1)
 	//http.HandleFunc("/q2", q2)
 	//http.HandleFunc("/q3", q3)
-	http.HandleFunc("/add", add)
-	fmt.Println("Datasink starting...")
-	log.Fatal(http.ListenAndServe(":8000", nil))
+	http.HandleFunc("/upload", upload)
+	port := ":8000"
+	fmt.Println("Datasink starting... on port", port)
+	log.Fatal(http.ListenAndServe(port, nil))
 }
 
 // func backend() (str string) {
