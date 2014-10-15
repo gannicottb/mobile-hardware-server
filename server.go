@@ -17,8 +17,8 @@ import (
 	//"bytes"
 )
 
-var dsnFront = "dbmaster:dbpassword@tcp("
-var dsnBack = ":3306)/aqdatasink?parseTime=true"
+var dsnFront = "root:dbpassword@tcp("
+var dsnBack = ":3306)/aq?parseTime=true"
 var db *sql.DB
 // var q2hbaseServer, q3hbaseServer string
 // var TEAM_ID, AWS_ACCOUNT_ID = "cloud9", "4897-8874-0242"
